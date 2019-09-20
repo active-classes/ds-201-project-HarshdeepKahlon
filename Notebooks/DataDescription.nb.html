@@ -1751,14 +1751,26 @@ summary {
 <!-- rnb-text-begin -->
 <div id="mobile-app-statistics-apple-ios-app-store" class="section level2">
 <h2>Mobile App Statistics (Apple iOS app store)</h2>
+<p><a href="https://www.kaggle.com/ramamet4/app-store-apple-data-set-10k-apps/downloads/app-store-apple-data-set-10k-apps.zip/7">Link to dataset</a></p>
 <p>The ever-changing mobile landscape is a challenging space to navigate. . The percentage of mobile over desktop is only increasing. Android holds about 53.2% of the smartphone market, while iOS is 43%. To get more people to download your app, you need to make sure they can easily find your app. Mobile app analytics is a great way to understand the existing strategy to drive growth and retention of future user.</p>
 <p>With million of apps around nowadays, the following data set has become very key to getting top trending apps in iOS app store. This data set contains more than 7000 Apple iOS mobile application details. The data was extracted from the iTunes Search API at the Apple Inc website. R and linux web scraping tools were used for this study.</p>
 <p>Data collection date (from API); July 2017</p>
-<p>Dimension of the data set; 7197 rows and 16 columns</p>
+<p>Dimension of the data set; 7197 rows and 17 columns</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXBwX3N0b3JlX2RhdGEgPC0gcmVhZC5jc3YoXCIuLi9EYXRhL0FwcGxlU3RvcmUuY3N2XCIpXG5kaW0oYXBwX3N0b3JlX2RhdGEpXG5gYGAifQ== -->
+<pre class="r"><code>app_store_data &lt;- read.csv(&quot;../Data/AppleStore.csv&quot;)
+dim(app_store_data)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDcxOTcgICAxN1xuIn0= -->
+<pre><code>[1] 7197   17</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiRGF0YSBEZXNjcmlwdGlvbiIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKIyMgTW9iaWxlIEFwcCBTdGF0aXN0aWNzIChBcHBsZSBpT1MgYXBwIHN0b3JlKQoKVGhlIGV2ZXItY2hhbmdpbmcgbW9iaWxlIGxhbmRzY2FwZSBpcyBhIGNoYWxsZW5naW5nIHNwYWNlIHRvIG5hdmlnYXRlLiAuIFRoZSBwZXJjZW50YWdlIG9mIG1vYmlsZSBvdmVyIGRlc2t0b3AgaXMgb25seSBpbmNyZWFzaW5nLiBBbmRyb2lkIGhvbGRzIGFib3V0IDUzLjIlIG9mIHRoZSBzbWFydHBob25lIG1hcmtldCwgd2hpbGUgaU9TIGlzIDQzJS4gVG8gZ2V0IG1vcmUgcGVvcGxlIHRvIGRvd25sb2FkIHlvdXIgYXBwLCB5b3UgbmVlZCB0byBtYWtlIHN1cmUgdGhleSBjYW4gZWFzaWx5IGZpbmQgeW91ciBhcHAuIE1vYmlsZSBhcHAgYW5hbHl0aWNzIGlzIGEgZ3JlYXQgd2F5IHRvIHVuZGVyc3RhbmQgdGhlIGV4aXN0aW5nIHN0cmF0ZWd5IHRvIGRyaXZlIGdyb3d0aCBhbmQgcmV0ZW50aW9uIG9mIGZ1dHVyZSB1c2VyLgoKV2l0aCBtaWxsaW9uIG9mIGFwcHMgYXJvdW5kIG5vd2FkYXlzLCB0aGUgZm9sbG93aW5nIGRhdGEgc2V0IGhhcyBiZWNvbWUgdmVyeSBrZXkgdG8gZ2V0dGluZyB0b3AgdHJlbmRpbmcgYXBwcyBpbiBpT1MgYXBwIHN0b3JlLiBUaGlzIGRhdGEgc2V0IGNvbnRhaW5zIG1vcmUgdGhhbiA3MDAwIEFwcGxlIGlPUyBtb2JpbGUgYXBwbGljYXRpb24gZGV0YWlscy4gVGhlIGRhdGEgd2FzIGV4dHJhY3RlZCBmcm9tIHRoZSBpVHVuZXMgU2VhcmNoIEFQSSBhdCB0aGUgQXBwbGUgSW5jIHdlYnNpdGUuIFIgYW5kIGxpbnV4IHdlYiBzY3JhcGluZyB0b29scyB3ZXJlIHVzZWQgZm9yIHRoaXMgc3R1ZHkuCgpEYXRhIGNvbGxlY3Rpb24gZGF0ZSAoZnJvbSBBUEkpOyBKdWx5IDIwMTcKCkRpbWVuc2lvbiBvZiB0aGUgZGF0YSBzZXQ7IDcxOTcgcm93cyBhbmQgMTYgY29sdW1ucwoK</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiRGF0YSBEZXNjcmlwdGlvbiIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKIyMgTW9iaWxlIEFwcCBTdGF0aXN0aWNzIChBcHBsZSBpT1MgYXBwIHN0b3JlKQoKPGEgaHJlZj0iaHR0cHM6Ly93d3cua2FnZ2xlLmNvbS9yYW1hbWV0NC9hcHAtc3RvcmUtYXBwbGUtZGF0YS1zZXQtMTBrLWFwcHMvZG93bmxvYWRzL2FwcC1zdG9yZS1hcHBsZS1kYXRhLXNldC0xMGstYXBwcy56aXAvNyI+TGluayB0byBkYXRhc2V0PC9hPgoKVGhlIGV2ZXItY2hhbmdpbmcgbW9iaWxlIGxhbmRzY2FwZSBpcyBhIGNoYWxsZW5naW5nIHNwYWNlIHRvIG5hdmlnYXRlLiAuIFRoZSBwZXJjZW50YWdlIG9mIG1vYmlsZSBvdmVyIGRlc2t0b3AgaXMgb25seSBpbmNyZWFzaW5nLiBBbmRyb2lkIGhvbGRzIGFib3V0IDUzLjIlIG9mIHRoZSBzbWFydHBob25lIG1hcmtldCwgd2hpbGUgaU9TIGlzIDQzJS4gVG8gZ2V0IG1vcmUgcGVvcGxlIHRvIGRvd25sb2FkIHlvdXIgYXBwLCB5b3UgbmVlZCB0byBtYWtlIHN1cmUgdGhleSBjYW4gZWFzaWx5IGZpbmQgeW91ciBhcHAuIE1vYmlsZSBhcHAgYW5hbHl0aWNzIGlzIGEgZ3JlYXQgd2F5IHRvIHVuZGVyc3RhbmQgdGhlIGV4aXN0aW5nIHN0cmF0ZWd5IHRvIGRyaXZlIGdyb3d0aCBhbmQgcmV0ZW50aW9uIG9mIGZ1dHVyZSB1c2VyLgoKV2l0aCBtaWxsaW9uIG9mIGFwcHMgYXJvdW5kIG5vd2FkYXlzLCB0aGUgZm9sbG93aW5nIGRhdGEgc2V0IGhhcyBiZWNvbWUgdmVyeSBrZXkgdG8gZ2V0dGluZyB0b3AgdHJlbmRpbmcgYXBwcyBpbiBpT1MgYXBwIHN0b3JlLiBUaGlzIGRhdGEgc2V0IGNvbnRhaW5zIG1vcmUgdGhhbiA3MDAwIEFwcGxlIGlPUyBtb2JpbGUgYXBwbGljYXRpb24gZGV0YWlscy4gVGhlIGRhdGEgd2FzIGV4dHJhY3RlZCBmcm9tIHRoZSBpVHVuZXMgU2VhcmNoIEFQSSBhdCB0aGUgQXBwbGUgSW5jIHdlYnNpdGUuIFIgYW5kIGxpbnV4IHdlYiBzY3JhcGluZyB0b29scyB3ZXJlIHVzZWQgZm9yIHRoaXMgc3R1ZHkuCgpEYXRhIGNvbGxlY3Rpb24gZGF0ZSAoZnJvbSBBUEkpOyBKdWx5IDIwMTcKCkRpbWVuc2lvbiBvZiB0aGUgZGF0YSBzZXQ7IDcxOTcgcm93cyBhbmQgMTcgY29sdW1ucwoKYGBge3J9CmFwcF9zdG9yZV9kYXRhIDwtIHJlYWQuY3N2KCIuLi9EYXRhL0FwcGxlU3RvcmUuY3N2IikKZGltKGFwcF9zdG9yZV9kYXRhKQpgYGAKCg==</div>
 
 
 
