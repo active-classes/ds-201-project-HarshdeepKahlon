@@ -1752,25 +1752,66 @@ summary {
 <div id="mobile-app-statistics-apple-ios-app-store" class="section level2">
 <h2>Mobile App Statistics (Apple iOS app store)</h2>
 <p><a href="https://www.kaggle.com/ramamet4/app-store-apple-data-set-10k-apps/downloads/app-store-apple-data-set-10k-apps.zip/7">Link to dataset</a></p>
-<p>The ever-changing mobile landscape is a challenging space to navigate. . The percentage of mobile over desktop is only increasing. Android holds about 53.2% of the smartphone market, while iOS is 43%. To get more people to download your app, you need to make sure they can easily find your app. Mobile app analytics is a great way to understand the existing strategy to drive growth and retention of future user.</p>
+<p>The ever-changing mobile landscape is a challenging space to navigate. . The percentage of mobile over desktop is only increasing. Android holds about 53.2% of the smartphone market, while iOS is 43%. To get more people to download your app, you need to make sure they can easily find your app. Mobile app analytics is a great way to understand the existing strategy to drive growth and retention of future user.s</p>
 <p>With million of apps around nowadays, the following data set has become very key to getting top trending apps in iOS app store. This data set contains more than 7000 Apple iOS mobile application details. The data was extracted from the iTunes Search API at the Apple Inc website. R and linux web scraping tools were used for this study.</p>
 <p>Data collection date (from API); July 2017</p>
-<p>Dimension of the data set; 7197 rows and 17 columns</p>
+<p>Dimension of the data set: 7197 rows and 17 columns</p>
+<p>DATASET VARIABLES</p>
+<p>X - quantitative id - quantitative track_name - categorical size_bytes - quantitative currency - categorical price - quantitative rating_count_tot - quantitative rating_count_ver - quantitative user_rating - quantitative user_rating_ver - quantitative ver - categorical cont_rating - categorical prime_genre - categorical sup_devices.num - quantitative ipadSc_urls.num - quantitative lang.num - quantitative vpp_lic - quantitative</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXBwX3N0b3JlX2RhdGEgPC0gcmVhZC5jc3YoXCIuLi9EYXRhL0FwcGxlU3RvcmUuY3N2XCIpXG5kaW0oYXBwX3N0b3JlX2RhdGEpXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXBwX3N0b3JlX2RhdGEgPC0gcmVhZC5jc3YoXCIuLi9EYXRhL0FwcGxlU3RvcmUuY3N2XCIpXG5zdW1tYXJ5KGFwcF9zdG9yZV9kYXRhKVxuYGBgIn0= -->
 <pre class="r"><code>app_store_data &lt;- read.csv(&quot;../Data/AppleStore.csv&quot;)
-dim(app_store_data)</code></pre>
+summary(app_store_data)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDcxOTcgICAxN1xuIn0= -->
-<pre><code>[1] 7197   17</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICAgIFggICAgICAgICAgICAgICBpZCAgICAgICAgICAgXG4gTWluLiAgIDogICAgMSAgIE1pbi4gICA6Mi44MTdlKzA4ICBcbiAxc3QgUXUuOiAyMDkwICAgMXN0IFF1Ljo2LjAwMWUrMDggIFxuIE1lZGlhbiA6IDQzODAgICBNZWRpYW4gOjkuNzgxZSswOCAgXG4gTWVhbiAgIDogNDc1OSAgIE1lYW4gICA6OC42MzFlKzA4ICBcbiAzcmQgUXUuOiA3MjIzICAgM3JkIFF1LjoxLjA4MmUrMDkgIFxuIE1heC4gICA6MTEwOTcgICBNYXguICAgOjEuMTg4ZSswOSAgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRyYWNrX25hbWUgIFxuIE1hbm5lcXVpbiBDaGFsbGVuZ2UgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA6ICAgMiAgXG4gVlIgUm9sbGVyIENvYXN0ZXIgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDogICAyICBcbiBfUFJJU00gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgOiAgIDEgIFxuIC1UaGUg56m06YCa44GXM0QtIOWQm+OBruiomOaGtuWKm3jlj43lsITnpZ7ntYzjgpLllY/jgYYhIO+9nk1yLkNVUlZF44GL44KJ44Gu5oyR5oim54q2IO+9njogICAxICBcbiA6KSBTdWRva3UgKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgOiAgIDEgIFxuICEgT0ggRmFudGFzdGljIEZyZWUgS2ljayArIEtpY2sgV2FsbCBDaGFsbGVuZ2UgICAgICAgICAgICAgICAgICAgICA6ICAgMSAgXG4gKE90aGVyKSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDo3MTg5ICBcbiAgIHNpemVfYnl0ZXMgICAgICAgIGN1cnJlbmN5ICAgICAgIHByaWNlICAgICAgICAgcmF0aW5nX2NvdW50X3RvdCAgcmF0aW5nX2NvdW50X3ZlciAgXG4gTWluLiAgIDo1Ljg5OGUrMDUgICBVU0Q6NzE5NyAgIE1pbi4gICA6ICAwLjAwMCAgIE1pbi4gICA6ICAgICAgMCAgIE1pbi4gICA6ICAgICAwLjAgIFxuIDFzdCBRdS46NC42OTJlKzA3ICAgICAgICAgICAgICAxc3QgUXUuOiAgMC4wMDAgICAxc3QgUXUuOiAgICAgMjggICAxc3QgUXUuOiAgICAgMS4wICBcbiBNZWRpYW4gOjkuNzE1ZSswNyAgICAgICAgICAgICAgTWVkaWFuIDogIDAuMDAwICAgTWVkaWFuIDogICAgMzAwICAgTWVkaWFuIDogICAgMjMuMCAgXG4gTWVhbiAgIDoxLjk5MWUrMDggICAgICAgICAgICAgIE1lYW4gICA6ICAxLjcyNiAgIE1lYW4gICA6ICAxMjg5MyAgIE1lYW4gICA6ICAgNDYwLjQgIFxuIDNyZCBRdS46MS44MTllKzA4ICAgICAgICAgICAgICAzcmQgUXUuOiAgMS45OTAgICAzcmQgUXUuOiAgIDI3OTMgICAzcmQgUXUuOiAgIDE0MC4wICBcbiBNYXguICAgOjQuMDI2ZSswOSAgICAgICAgICAgICAgTWF4LiAgIDoyOTkuOTkwICAgTWF4LiAgIDoyOTc0Njc2ICAgTWF4LiAgIDoxNzcwNTAuMCAgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuICB1c2VyX3JhdGluZyAgICB1c2VyX3JhdGluZ192ZXIgICAgICB2ZXIgICAgICAgY29udF9yYXRpbmcgICAgICAgICAgIHByaW1lX2dlbnJlICBcbiBNaW4uICAgOjAuMDAwICAgTWluLiAgIDowLjAwMCAgIDEuMCAgICA6IDMxNyAgIDEyKzoxMTU1ICAgIEdhbWVzICAgICAgICAgICA6Mzg2MiAgXG4gMXN0IFF1LjozLjUwMCAgIDFzdCBRdS46Mi41MDAgICAxLjEgICAgOiAyNjYgICAxNys6IDYyMiAgICBFbnRlcnRhaW5tZW50ICAgOiA1MzUgIFxuIE1lZGlhbiA6NC4wMDAgICBNZWRpYW4gOjQuMDAwICAgMS4yICAgIDogMjE4ICAgNCsgOjQ0MzMgICAgRWR1Y2F0aW9uICAgICAgIDogNDUzICBcbiBNZWFuICAgOjMuNTI3ICAgTWVhbiAgIDozLjI1NCAgIDEuMC4wICA6IDE4NyAgIDkrIDogOTg3ICAgIFBob3RvICYgVmlkZW8gICA6IDM0OSAgXG4gM3JkIFF1Ljo0LjUwMCAgIDNyZCBRdS46NC41MDAgICAxLjAuMSAgOiAxODAgICAgICAgICAgICAgICBVdGlsaXRpZXMgICAgICAgOiAyNDggIFxuIE1heC4gICA6NS4wMDAgICBNYXguICAgOjUuMDAwICAgMS4zICAgIDogMTM2ICAgICAgICAgICAgICAgSGVhbHRoICYgRml0bmVzczogMTgwICBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIChPdGhlcik6NTg5MyAgICAgICAgICAgICAgIChPdGhlcikgICAgICAgICA6MTU3MCAgXG4gc3VwX2RldmljZXMubnVtIGlwYWRTY191cmxzLm51bSAgICBsYW5nLm51bSAgICAgICAgIHZwcF9saWMgICAgICBcbiBNaW4uICAgOiA5LjAwICAgTWluLiAgIDowLjAwMCAgIE1pbi4gICA6IDAuMDAwICAgTWluLiAgIDowLjAwMDAgIFxuIDFzdCBRdS46MzcuMDAgICAxc3QgUXUuOjMuMDAwICAgMXN0IFF1LjogMS4wMDAgICAxc3QgUXUuOjEuMDAwMCAgXG4gTWVkaWFuIDozNy4wMCAgIE1lZGlhbiA6NS4wMDAgICBNZWRpYW4gOiAxLjAwMCAgIE1lZGlhbiA6MS4wMDAwICBcbiBNZWFuICAgOjM3LjM2ICAgTWVhbiAgIDozLjcwNyAgIE1lYW4gICA6IDUuNDM1ICAgTWVhbiAgIDowLjk5MzEgIFxuIDNyZCBRdS46MzguMDAgICAzcmQgUXUuOjUuMDAwICAgM3JkIFF1LjogOC4wMDAgICAzcmQgUXUuOjEuMDAwMCAgXG4gTWF4LiAgIDo0Ny4wMCAgIE1heC4gICA6NS4wMDAgICBNYXguICAgOjc1LjAwMCAgIE1heC4gICA6MS4wMDAwICBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIn0= -->
+<pre><code>       X               id           
+ Min.   :    1   Min.   :2.817e+08  
+ 1st Qu.: 2090   1st Qu.:6.001e+08  
+ Median : 4380   Median :9.781e+08  
+ Mean   : 4759   Mean   :8.631e+08  
+ 3rd Qu.: 7223   3rd Qu.:1.082e+09  
+ Max.   :11097   Max.   :1.188e+09  
+                                    
+                                                               track_name  
+ Mannequin Challenge                                                :   2  
+ VR Roller Coaster                                                  :   2  
+ _PRISM                                                             :   1  
+ -The 穴通し3D- 君の記憶力x反射神経を問う! ～Mr.CURVEからの挑戦状 ～:   1  
+ :) Sudoku +                                                        :   1  
+ ! OH Fantastic Free Kick + Kick Wall Challenge                     :   1  
+ (Other)                                                            :7189  
+   size_bytes        currency       price         rating_count_tot  rating_count_ver  
+ Min.   :5.898e+05   USD:7197   Min.   :  0.000   Min.   :      0   Min.   :     0.0  
+ 1st Qu.:4.692e+07              1st Qu.:  0.000   1st Qu.:     28   1st Qu.:     1.0  
+ Median :9.715e+07              Median :  0.000   Median :    300   Median :    23.0  
+ Mean   :1.991e+08              Mean   :  1.726   Mean   :  12893   Mean   :   460.4  
+ 3rd Qu.:1.819e+08              3rd Qu.:  1.990   3rd Qu.:   2793   3rd Qu.:   140.0  
+ Max.   :4.026e+09              Max.   :299.990   Max.   :2974676   Max.   :177050.0  
+                                                                                      
+  user_rating    user_rating_ver      ver       cont_rating           prime_genre  
+ Min.   :0.000   Min.   :0.000   1.0    : 317   12+:1155    Games           :3862  
+ 1st Qu.:3.500   1st Qu.:2.500   1.1    : 266   17+: 622    Entertainment   : 535  
+ Median :4.000   Median :4.000   1.2    : 218   4+ :4433    Education       : 453  
+ Mean   :3.527   Mean   :3.254   1.0.0  : 187   9+ : 987    Photo &amp; Video   : 349  
+ 3rd Qu.:4.500   3rd Qu.:4.500   1.0.1  : 180               Utilities       : 248  
+ Max.   :5.000   Max.   :5.000   1.3    : 136               Health &amp; Fitness: 180  
+                                 (Other):5893               (Other)         :1570  
+ sup_devices.num ipadSc_urls.num    lang.num         vpp_lic      
+ Min.   : 9.00   Min.   :0.000   Min.   : 0.000   Min.   :0.0000  
+ 1st Qu.:37.00   1st Qu.:3.000   1st Qu.: 1.000   1st Qu.:1.0000  
+ Median :37.00   Median :5.000   Median : 1.000   Median :1.0000  
+ Mean   :37.36   Mean   :3.707   Mean   : 5.435   Mean   :0.9931  
+ 3rd Qu.:38.00   3rd Qu.:5.000   3rd Qu.: 8.000   3rd Qu.:1.0000  
+ Max.   :47.00   Max.   :5.000   Max.   :75.000   Max.   :1.0000  
+                                                                  </code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiRGF0YSBEZXNjcmlwdGlvbiIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKIyMgTW9iaWxlIEFwcCBTdGF0aXN0aWNzIChBcHBsZSBpT1MgYXBwIHN0b3JlKQoKPGEgaHJlZj0iaHR0cHM6Ly93d3cua2FnZ2xlLmNvbS9yYW1hbWV0NC9hcHAtc3RvcmUtYXBwbGUtZGF0YS1zZXQtMTBrLWFwcHMvZG93bmxvYWRzL2FwcC1zdG9yZS1hcHBsZS1kYXRhLXNldC0xMGstYXBwcy56aXAvNyI+TGluayB0byBkYXRhc2V0PC9hPgoKVGhlIGV2ZXItY2hhbmdpbmcgbW9iaWxlIGxhbmRzY2FwZSBpcyBhIGNoYWxsZW5naW5nIHNwYWNlIHRvIG5hdmlnYXRlLiAuIFRoZSBwZXJjZW50YWdlIG9mIG1vYmlsZSBvdmVyIGRlc2t0b3AgaXMgb25seSBpbmNyZWFzaW5nLiBBbmRyb2lkIGhvbGRzIGFib3V0IDUzLjIlIG9mIHRoZSBzbWFydHBob25lIG1hcmtldCwgd2hpbGUgaU9TIGlzIDQzJS4gVG8gZ2V0IG1vcmUgcGVvcGxlIHRvIGRvd25sb2FkIHlvdXIgYXBwLCB5b3UgbmVlZCB0byBtYWtlIHN1cmUgdGhleSBjYW4gZWFzaWx5IGZpbmQgeW91ciBhcHAuIE1vYmlsZSBhcHAgYW5hbHl0aWNzIGlzIGEgZ3JlYXQgd2F5IHRvIHVuZGVyc3RhbmQgdGhlIGV4aXN0aW5nIHN0cmF0ZWd5IHRvIGRyaXZlIGdyb3d0aCBhbmQgcmV0ZW50aW9uIG9mIGZ1dHVyZSB1c2VyLgoKV2l0aCBtaWxsaW9uIG9mIGFwcHMgYXJvdW5kIG5vd2FkYXlzLCB0aGUgZm9sbG93aW5nIGRhdGEgc2V0IGhhcyBiZWNvbWUgdmVyeSBrZXkgdG8gZ2V0dGluZyB0b3AgdHJlbmRpbmcgYXBwcyBpbiBpT1MgYXBwIHN0b3JlLiBUaGlzIGRhdGEgc2V0IGNvbnRhaW5zIG1vcmUgdGhhbiA3MDAwIEFwcGxlIGlPUyBtb2JpbGUgYXBwbGljYXRpb24gZGV0YWlscy4gVGhlIGRhdGEgd2FzIGV4dHJhY3RlZCBmcm9tIHRoZSBpVHVuZXMgU2VhcmNoIEFQSSBhdCB0aGUgQXBwbGUgSW5jIHdlYnNpdGUuIFIgYW5kIGxpbnV4IHdlYiBzY3JhcGluZyB0b29scyB3ZXJlIHVzZWQgZm9yIHRoaXMgc3R1ZHkuCgpEYXRhIGNvbGxlY3Rpb24gZGF0ZSAoZnJvbSBBUEkpOyBKdWx5IDIwMTcKCkRpbWVuc2lvbiBvZiB0aGUgZGF0YSBzZXQ7IDcxOTcgcm93cyBhbmQgMTcgY29sdW1ucwoKYGBge3J9CmFwcF9zdG9yZV9kYXRhIDwtIHJlYWQuY3N2KCIuLi9EYXRhL0FwcGxlU3RvcmUuY3N2IikKZGltKGFwcF9zdG9yZV9kYXRhKQpgYGAKCg==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiRGF0YSBEZXNjcmlwdGlvbiIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKIyMgTW9iaWxlIEFwcCBTdGF0aXN0aWNzIChBcHBsZSBpT1MgYXBwIHN0b3JlKQoKPGEgaHJlZj0iaHR0cHM6Ly93d3cua2FnZ2xlLmNvbS9yYW1hbWV0NC9hcHAtc3RvcmUtYXBwbGUtZGF0YS1zZXQtMTBrLWFwcHMvZG93bmxvYWRzL2FwcC1zdG9yZS1hcHBsZS1kYXRhLXNldC0xMGstYXBwcy56aXAvNyI+TGluayB0byBkYXRhc2V0PC9hPgoKVGhlIGV2ZXItY2hhbmdpbmcgbW9iaWxlIGxhbmRzY2FwZSBpcyBhIGNoYWxsZW5naW5nIHNwYWNlIHRvIG5hdmlnYXRlLiAuIFRoZSBwZXJjZW50YWdlIG9mIG1vYmlsZSBvdmVyIGRlc2t0b3AgaXMgb25seSBpbmNyZWFzaW5nLiBBbmRyb2lkIGhvbGRzIGFib3V0IDUzLjIlIG9mIHRoZSBzbWFydHBob25lIG1hcmtldCwgd2hpbGUgaU9TIGlzIDQzJS4gVG8gZ2V0IG1vcmUgcGVvcGxlIHRvIGRvd25sb2FkIHlvdXIgYXBwLCB5b3UgbmVlZCB0byBtYWtlIHN1cmUgdGhleSBjYW4gZWFzaWx5IGZpbmQgeW91ciBhcHAuIE1vYmlsZSBhcHAgYW5hbHl0aWNzIGlzIGEgZ3JlYXQgd2F5IHRvIHVuZGVyc3RhbmQgdGhlIGV4aXN0aW5nIHN0cmF0ZWd5IHRvIGRyaXZlIGdyb3d0aCBhbmQgcmV0ZW50aW9uIG9mIGZ1dHVyZSB1c2VyLnMKCldpdGggbWlsbGlvbiBvZiBhcHBzIGFyb3VuZCBub3dhZGF5cywgdGhlIGZvbGxvd2luZyBkYXRhIHNldCBoYXMgYmVjb21lIHZlcnkga2V5IHRvIGdldHRpbmcgdG9wIHRyZW5kaW5nIGFwcHMgaW4gaU9TIGFwcCBzdG9yZS4gVGhpcyBkYXRhIHNldCBjb250YWlucyBtb3JlIHRoYW4gNzAwMCBBcHBsZSBpT1MgbW9iaWxlIGFwcGxpY2F0aW9uIGRldGFpbHMuIFRoZSBkYXRhIHdhcyBleHRyYWN0ZWQgZnJvbSB0aGUgaVR1bmVzIFNlYXJjaCBBUEkgYXQgdGhlIEFwcGxlIEluYyB3ZWJzaXRlLiBSIGFuZCBsaW51eCB3ZWIgc2NyYXBpbmcgdG9vbHMgd2VyZSB1c2VkIGZvciB0aGlzIHN0dWR5LgoKRGF0YSBjb2xsZWN0aW9uIGRhdGUgKGZyb20gQVBJKTsgSnVseSAyMDE3CgpEaW1lbnNpb24gb2YgdGhlIGRhdGEgc2V0OiA3MTk3IHJvd3MgYW5kIDE3IGNvbHVtbnMKCkRBVEFTRVQgVkFSSUFCTEVTCgpYIC0gcXVhbnRpdGF0aXZlCmlkIC0gcXVhbnRpdGF0aXZlCnRyYWNrX25hbWUgLSBjYXRlZ29yaWNhbApzaXplX2J5dGVzIC0gcXVhbnRpdGF0aXZlCmN1cnJlbmN5IC0gY2F0ZWdvcmljYWwKcHJpY2UgLSBxdWFudGl0YXRpdmUKcmF0aW5nX2NvdW50X3RvdCAtIHF1YW50aXRhdGl2ZQpyYXRpbmdfY291bnRfdmVyIC0gcXVhbnRpdGF0aXZlCnVzZXJfcmF0aW5nIC0gcXVhbnRpdGF0aXZlCnVzZXJfcmF0aW5nX3ZlciAtIHF1YW50aXRhdGl2ZQp2ZXIgLSBjYXRlZ29yaWNhbApjb250X3JhdGluZyAtIGNhdGVnb3JpY2FsCnByaW1lX2dlbnJlIC0gY2F0ZWdvcmljYWwKc3VwX2RldmljZXMubnVtIC0gcXVhbnRpdGF0aXZlCmlwYWRTY191cmxzLm51bSAtIHF1YW50aXRhdGl2ZQpsYW5nLm51bSAtIHF1YW50aXRhdGl2ZQp2cHBfbGljIC0gcXVhbnRpdGF0aXZlCgoKCmBgYHtyfQphcHBfc3RvcmVfZGF0YSA8LSByZWFkLmNzdigiLi4vRGF0YS9BcHBsZVN0b3JlLmNzdiIpCnN1bW1hcnkoYXBwX3N0b3JlX2RhdGEpCmBgYAoK</div>
 
 
 
