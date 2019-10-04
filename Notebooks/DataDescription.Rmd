@@ -3,37 +3,37 @@ title: "Data Description"
 output: html_notebook
 ---
 
-## Mobile App Statistics (Apple iOS app store)
+## Mobile App Statistics (Apple iOS App Store)
 
 <a href="https://www.kaggle.com/ramamet4/app-store-apple-data-set-10k-apps/downloads/app-store-apple-data-set-10k-apps.zip/7">Link to dataset</a>
 
-The ever-changing mobile landscape is a challenging space to navigate. . The percentage of mobile over desktop is only increasing. Android holds about 53.2% of the smartphone market, while iOS is 43%. To get more people to download your app, you need to make sure they can easily find your app. Mobile app analytics is a great way to understand the existing strategy to drive growth and retention of future user.s
+The ever-changing mobile landscape is a challenging space to navigate. The percentage of mobile over desktop is only increasing. Android holds about 53.2% of the smartphone market, while iOS is 43%. To get more people to download your app, you need to make sure they can easily find your app. Mobile app analytics is a great way to understand the existing strategy to drive growth and retention of future users.
 
-With million of apps around nowadays, the following data set has become very key to getting top trending apps in iOS app store. This data set contains more than 7000 Apple iOS mobile application details. The data was extracted from the iTunes Search API at the Apple Inc website. R and linux web scraping tools were used for this study.
+With million of apps around nowadays, the following data set has become very key to getting top trending apps in iOS App Store. This data set contains more than 7000 Apple iOS mobile application details. The data was extracted from the iTunes Search API at the Apple Inc. website. R and Linux web scraping tools were used for this study.
 
-Data collection date (from API); July 2017
+Data collection date (from API): July 2017
 
 Dimension of the data set: 7197 rows and 17 columns
 
-DATASET VARIABLES
+### DATASET VARIABLES
 
-X - quantitative
-id - quantitative
-track_name - categorical
-size_bytes - quantitative
-currency - categorical
-price - quantitative
-rating_count_tot - quantitative
-rating_count_ver - quantitative
-user_rating - quantitative
-user_rating_ver - quantitative
-ver - categorical
-cont_rating - categorical
-prime_genre - categorical
-sup_devices.num - quantitative
-ipadSc_urls.num - quantitative
-lang.num - quantitative
-vpp_lic - quantitative
+- X - quantitative
+- id - quantitative
+- track_name - categorical
+- size_bytes - quantitative
+- currency - categorical
+- price - quantitative
+- rating_count_tot - quantitative
+- rating_count_ver - quantitative
+- user_rating - quantitative
+- user_rating_ver - quantitative
+- ver - categorical
+- cont_rating - categorical
+- prime_genre - categorical
+- sup_devices.num - quantitative
+- ipadSc_urls.num - quantitative
+- lang.num - quantitative
+- vpp_lic - quantitative
 
 
 

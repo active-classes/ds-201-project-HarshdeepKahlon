@@ -1,0 +1,24 @@
+---
+title: "Background, Problem Descriptions, and Objectives "
+output: html_notebook
+---
+
+## Background
+
+The dataset found <a href="https://www.kaggle.com/ramamet4/app-store-apple-data-set-10k-apps/downloads/app-store-apple-data-set-10k-apps.zip/7">here</a> contains more than 7,000 details about apps that are currently listed on the Apple iOS App Store. By investigating this data, we can potentially find interesting observations that could assist companies and developers to further grow their mobile applications.
+
+
+## Problem Description
+
+
+
+
+## Objectives
+
+- Find the best ways to drive growth by looking at specific variables:
+  - What is the most popular pricing model of an app?
+  - What genre do the most successful apps fall into?
+  - Does language support affect the app's user rating and rating count?
+  - Does the length of the app's name affect the popularity of it?
+  
+- We can also look at apps that in at their "1.0" or intital launch stage and see how they compare to well-established apps on the App Store.
