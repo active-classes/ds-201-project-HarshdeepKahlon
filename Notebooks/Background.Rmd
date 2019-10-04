@@ -10,11 +10,6 @@ The dataset found <a href="https://www.kaggle.com/ramamet4/app-store-apple-data-
 
 ## Problem Description
 
-
-
-
-## Objectives
-
 - Find the best ways to drive growth by looking at specific variables:
   - What is the most popular pricing model of an app?
   - What genre do the most successful apps fall into?
@@ -22,3 +17,12 @@ The dataset found <a href="https://www.kaggle.com/ramamet4/app-store-apple-data-
   - Does the length of the app's name affect the popularity of it?
   
 - We can also look at apps that in at their "1.0" or intital launch stage and see how they compare to well-established apps on the App Store.
+
+
+## Objectives
+
+- Use R Lang and packages like "ggplot" to solve these specific problems.
+
+- Visualize certain varibales like pricing and genre.
+
+
