@@ -23,6 +23,6 @@ The dataset found <a href="https://www.kaggle.com/ramamet4/app-store-apple-data-
 
 - Use R Lang and packages like "ggplot" to solve these specific problems.
 
-- Visualize certain varibales like pricing and genre.
+- Visualize certain variables like pricing and genre.
 
 

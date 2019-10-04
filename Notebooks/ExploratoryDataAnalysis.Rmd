@@ -3,3 +3,28 @@ title: "Exploratory Data Analysis"
 output: html_notebook
 ---
 
+```{r}
+library(tidyverse)
+appstore_df <- read.csv("../Data/AppleStore.csv")
+appstore_df %>% arrange(X)
+summary(appstore_df)
+```
+
+We will first add certain variables to the data set that are more relevant (like total size of an app in megabytes).
+```{r}
+appstore_df <- mutate(appstore_df, size_mb = size_bytes/1000000)
+```
+
+
+We can see how the popularity of certain genres with this graph below.
+```{r}
+appstore_df %>% ggplot() + geom_boxplot(mapping = aes(x=prime_genre, y = log10(rating_count_tot), color=prime_genre)) + coord_flip() + theme_minimal()
+```
+
+We can see the distribution of the app sizes throughout the ~7000 apps in the data set.
+```{r}
+appstore_df %>% ggplot() + geom_histogram(mapping = aes(x=size_mb), bins = 20) + geom_vline(mapping= aes(xintercept= median(appstore_df$size_mb))) + geom_vline(mapping= aes(xintercept= mean(appstore_df$size_mb), color="Red"))
+```
+
+
+
