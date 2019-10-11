@@ -36,7 +36,6 @@ Dimension of the data set: 7197 rows and 17 columns
 - vpp_lic - quantitative
 
 
-
 ```{r}
 app_store_data <- read.csv("../Data/AppleStore.csv")
 summary(app_store_data)
