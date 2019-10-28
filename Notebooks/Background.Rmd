@@ -10,6 +10,7 @@ The dataset found <a href="https://www.kaggle.com/ramamet4/app-store-apple-data-
 
 ## Problem Description
 
+
 - Find the best ways to drive growth by looking at specific variables:
   - What is the most popular pricing model of an app?
   - What genre do the most successful apps fall into?
@@ -21,8 +22,5 @@ The dataset found <a href="https://www.kaggle.com/ramamet4/app-store-apple-data-
 
 ## Objectives
 
-- Use R Lang and packages like "ggplot" to solve these specific problems.
-- Visualize certain variables like pricing and genre.
-
-
+The  goal  of  this  project  is  to  analyze  the  App Store data  and  discover if genre, price, and/or content rating are vital in determining the success of an app. Once the attributes have been found, this project will try to classify whether or not a successful app needs a high user rating. This project will also explore the relationship between an app's size in megabytes and the genre of it. Finally, this project will compare free apps to paid apps ($0.99 and above) and find any major differences.
 
