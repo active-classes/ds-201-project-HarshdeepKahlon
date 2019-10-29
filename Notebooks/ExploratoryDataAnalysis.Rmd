@@ -61,4 +61,11 @@ We could see that content rating plays a very minor roll in determining the succ
 ```{r}
 appstore_df %>% ggplot() + geom_boxplot(mapping = aes(x=user_rating_string, y = rating_count_tot, color=user_rating_string)) + scale_y_log10() + coord_flip() + labs(y="Rating Count (logarithmic)") + labs(x="User Review Rating") + theme_minimal()
 ```
-From the boxplot above, we can see a clear growth in total ratings (which gives a rough indication of total downloads) until the user ratings goes above 2 stars. However, from 2 - 5 stars, the difference in rating count cannot be determined from the graph.
+From the boxplot above, we can see a clear growth in total ratings (which gives a rough indication of total downloads) until the user ratings goes above 1.5 stars. However, from 2 - 5 stars, the difference in rating count cannot be determined from the graph.
+
+## Summary
+- Content rating does not affect an app's success.
+- If the user rating is below 1.5, an app's success is harmed.
+- Most incredibly popular apps have a total size below 2 gigabytes or 2000 megabytes.
+- Most apps that are over 1 GB are usually games.
+- Free apps have significantly more downloads than paid apps.
