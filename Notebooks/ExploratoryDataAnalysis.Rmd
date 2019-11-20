@@ -6,6 +6,7 @@ output: html_notebook
 ```{r}
 library(tidyverse)
 library(Hmisc)
+library(plotly)
 ```
 
 
@@ -42,11 +43,19 @@ The total rating count, which implies the total download count, of free apps are
 
 ```{r}
 appstore_df %>% ggplot() + geom_histogram(mapping = aes(x=size_mb), bins = 60) + geom_vline(mapping= aes(xintercept= median(appstore_df$size_mb)), color="#873096") + geom_vline(mapping= aes(xintercept= mean(appstore_df$size_mb), color="#ff6159")) + theme_minimal()
+appstore_df %>% ggplot() + geom_point(mapping = aes(x=user_rating_string, y=log10(rating_count_tot), color=prime_genre == "Games", alpha=0.8)) + theme_minimal()
+
 ``` 
 We can see the distribution of the app sizes throughout the ~7000 apps in the data set. The red line represents the mean of the app sizes in megabytes, while the purple line represents the median of the app sizes in megabytes. We can see that most apps are under the 500 MB threshold.
 
 ```{r}
 appstore_df %>% ggplot() + geom_point(mapping = aes(y=size_mb, x=log10(rating_count_tot), color=prime_genre == "Games", alpha=0.8)) + theme_minimal()
+plot_ly(
+  data=appstore_df,
+  x = ~log10(rating_count_tot),
+  y = ~size_mb,
+  color=~prime_genre
+)
 ```
  
 
