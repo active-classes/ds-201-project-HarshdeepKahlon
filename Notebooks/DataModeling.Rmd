@@ -53,20 +53,35 @@ predictors<-c("price", "prime_genre", "cont_rating", "size_mb")
 ```
 
 ```{r}
-```
-
-```{r}
 fitControl <- trainControl(
   method = "repeatedcv",
   number = 5,
   repeats = 5,
-  allowParallel = TRUE)
-
-modelLookup(model='gbm')
+  allowParallel = TRUE,
+  )
 
 grid <- expand.grid(n.trees=c(10,20,50,100,500,1000),shrinkage=c(0.01,0.05,0.1,0.5),n.minobsinnode = c(3,5,10),interaction.depth=c(1,5,10))
 
+modelLookup(model='gbm')
+
 model_gbm<-train(trainSet[,predictors],trainSet[,outcomeName],method='gbm',trControl=fitControl,tuneGrid=grid)
 
+```
+
+```{r}
+saveRDS(model_gbm, "GBM Model")
 plot(model_gbm)
+```
+
+```{r}
+plot(varImp(object=model_gbm),main="GBVariable Importance")
+```
+
+```{r}
+predictions<-predict.train(object=model_gbm,testSet[,predictors],type="raw")
+table(predictions)
+```
+
+```{r}
+confusionMatrix(predictions,testSet[,outcomeName])
 ```
