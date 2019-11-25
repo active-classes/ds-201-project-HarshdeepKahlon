@@ -3,7 +3,7 @@ title: "Data Modeling"
 output: html_notebook
 ---
 
-## App Store Dataset
+## Method
 
 ```{r,message=FALSE,warning=FALSE}
 library(tidyverse)
@@ -57,14 +57,6 @@ model_gbm <- readRDS("../Models/final_model.rds")
 model_ridge <- readRDS("../Models/ridge_model.rds")
 ```
 
-```{r}
-plot(model_gbm)
-```
-
-```{r}
-ggplot(varImp(model_ridge))
-ggplot(varImp(model_gbm))
-```
 
 ```{r}
 predictions_ridge<-predict.train(object=model_ridge,testSet[,predictors],type="raw")
@@ -72,3 +64,17 @@ predictions_gdm<-predict.train(object=model_gbm,testSet[,predictors],type="raw")
 summary(predictions_ridge)
 summary(predictions_gdm)
 ```
+
+## Results
+
+```{r}
+ggplot(varImp(model_ridge))
+```
+
+According to the Ridge Regression variable importance plot, the most important factors in determining an app's success (total rating count) is if the app was free or not. Second is the app's total size in megabytes. The actual price of the app has a slight affect of the overall rating count if the app is paid. The prime genre also has slight importance. However, the content rating of the app is not important at all in determining the overall rating count. 
+
+```{r}
+ggplot(varImp(model_gbm))
+```
+
+The GBM variable importance plot does not contain if the app is free or not, but does contain the rest of the predictors. The most important variable in this is the app's total download size. The prime genre of the app has slight importance as as well. Where this differs from the Ridge Regression model is the importance of content rating and price with both variables having swapped postiion from the Ridge Regression model.s
