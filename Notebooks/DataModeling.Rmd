@@ -1,0 +1,80 @@
+---
+title: "Data Modeling"
+output: html_notebook
+---
+
+## Method
+
+```{r,message=FALSE,warning=FALSE}
+library(tidyverse)
+library(caret)
+library(skimr)
+library(RANN)
+library(rpart)
+library(rpart.plot)
+library(randomForest)
+library(gbm)
+library(elasticnet)
+
+app_store_df <- read.csv("../Data/AppleStore.csv")
+app_store_df <- mutate(app_store_df, size_mb = size_bytes/1000000)
+app_store_df <- mutate(app_store_df, is_free = price == 0)
+app_store_df <- mutate(app_store_df, user_rating_string = as.character(user_rating))
+app_store_df <- na.omit(app_store_df)
+sapply(app_store_df, class)
+```
+
+```{r}
+index <- createDataPartition(app_store_df$rating_count_tot, p=0.75, list=FALSE)
+trainSet <- app_store_df[ index,]
+testSet <- app_store_df[-index,]
+str(trainSet)
+```
+
+```{r}
+control <- rfeControl(functions = rfFuncs,
+                   method = "repeatedcv",
+                   repeats = 3,
+                   verbose = FALSE)
+outcomeName<-'rating_count_tot'
+
+predictors<-names(trainSet)[!names(trainSet) %in% outcomeName]
+
+predictors<-c("price", "prime_genre", "cont_rating", "size_mb", "is_free")
+```
+
+```{r}
+fitControl <- trainControl(
+  method = "repeatedcv",
+  number = 5,
+  repeats = 5,
+  allowParallel = TRUE,
+  )
+
+grid <- expand.grid(n.trees=c(10,20,50,100,500,1000),shrinkage=c(0.01,0.05,0.1,0.5),n.minobsinnode = c(3,5,10),interaction.depth=c(1,5,10))
+
+model_gbm <- readRDS("../Models/final_model.rds")
+model_ridge <- readRDS("../Models/ridge_model.rds")
+```
+
+
+```{r}
+predictions_ridge<-predict.train(object=model_ridge,testSet[,predictors],type="raw")
+predictions_gdm<-predict.train(object=model_gbm,testSet[,predictors],type="raw")
+summary(predictions_ridge)
+summary(predictions_gdm)
+```
+
+## Results
+
+```{r}
+ggplot(varImp(model_ridge))
+```
+
+According to the Ridge Regression variable importance plot, the most important factors in determining an app's success (total rating count) is if the app was free or not. Second is the app's total size in megabytes. The actual price of the app has a slight affect of the overall rating count if the app is paid. The prime genre also has slight importance. However, the content rating of the app is not important at all in determining the overall rating count. 
+
+```{r}
+ggplot(varImp(model_gbm))
+```
+
+The GBM variable importance plot does not contain if the app is free or not, but does contain the rest of the predictors. The most important variable in this is the app's total download size. The prime genre of the app has slight importance as as well. Where this differs from the Ridge Regression model is the importance of content rating and price with both variables having swapped postiion from the Ridge Regression model.s
