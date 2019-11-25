@@ -13,24 +13,15 @@ library(RANN)
 library(rpart)
 library(rpart.plot)
 library(randomForest)
+library(gbm)
+library(elasticnet)
 
 app_store_df <- read.csv("../Data/AppleStore.csv")
 app_store_df <- mutate(app_store_df, size_mb = size_bytes/1000000)
 app_store_df <- mutate(app_store_df, is_free = price == 0)
 app_store_df <- mutate(app_store_df, user_rating_string = as.character(user_rating))
-
+app_store_df <- na.omit(app_store_df)
 sapply(app_store_df, class)
-```
-
-```{r}
-library(tidyverse)
-library(caret)
-library(skimr)
-library(RANN)
-library(rpart)
-library(rpart.plot)
-
-lm(rating_count_tot ~ price + size_mb + prime_genre + cont_rating, data=app_store_df)
 ```
 
 ```{r}
@@ -49,7 +40,7 @@ outcomeName<-'rating_count_tot'
 
 predictors<-names(trainSet)[!names(trainSet) %in% outcomeName]
 
-predictors<-c("price", "prime_genre", "cont_rating", "size_mb")
+predictors<-c("price", "prime_genre", "cont_rating", "size_mb", "is_free")
 ```
 
 ```{r}
@@ -62,26 +53,22 @@ fitControl <- trainControl(
 
 grid <- expand.grid(n.trees=c(10,20,50,100,500,1000),shrinkage=c(0.01,0.05,0.1,0.5),n.minobsinnode = c(3,5,10),interaction.depth=c(1,5,10))
 
-modelLookup(model='gbm')
-
-model_gbm<-train(trainSet[,predictors],trainSet[,outcomeName],method='gbm',trControl=fitControl,tuneGrid=grid)
-
+model_gbm <- readRDS("../Models/final_model.rds")
+model_ridge <- readRDS("../Models/ridge_model.rds")
 ```
 
 ```{r}
-saveRDS(model_gbm, "GBM Model")
 plot(model_gbm)
 ```
 
 ```{r}
-plot(varImp(object=model_gbm),main="GBVariable Importance")
+ggplot(varImp(model_ridge))
+ggplot(varImp(model_gbm))
 ```
 
 ```{r}
-predictions<-predict.train(object=model_gbm,testSet[,predictors],type="raw")
-table(predictions)
-```
-
-```{r}
-confusionMatrix(predictions,testSet[,outcomeName])
+predictions_ridge<-predict.train(object=model_ridge,testSet[,predictors],type="raw")
+predictions_gdm<-predict.train(object=model_gbm,testSet[,predictors],type="raw")
+summary(predictions_ridge)
+summary(predictions_gdm)
 ```

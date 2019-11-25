@@ -33,7 +33,8 @@ fitControl <- trainControl(
   method = "repeatedcv",
   number = 5,
   repeats = 5,
-  allowParallel = TRUE)
+  allowParallel = TRUE
+  )
 
 modelLookup(model='gbm')
 
