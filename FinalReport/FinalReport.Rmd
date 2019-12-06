@@ -3,13 +3,23 @@ title: "Data Science Project with App Store Dataset"
 author: "Harshdeep Kahlon"
 date: "12/4/2019"
 output:
-  pdf_document: default
   html_document:
     df_print: paged
+  word_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(caret)
+library(skimr)
+library(RANN)
+library(rpart)
+library(rpart.plot)
+library(randomForest)
+library(gbm)
+library(elasticnet)
 ```
 
 ## 1. Abstract
@@ -24,37 +34,107 @@ The  goal  of  this  project  is  to  analyze  the  App Store data  and  discove
 
 ## 3. Data Description
 
-- X - quantitative
-- id - quantitative
-- track_name - categorical
-- size_bytes - quantitative
-- currency - categorical
-- price - quantitative
-- rating_count_tot - quantitative
-- rating_count_ver - quantitative
-- user_rating - quantitative
-- user_rating_ver - quantitative
-- ver - categorical
-- cont_rating - categorical
-- prime_genre - categorical
-- sup_devices.num - quantitative
-- ipadSc_urls.num - quantitative
-- lang.num - quantitative
-- vpp_lic - quantitative
+- X - Position of each app in the dataset.
+- id - Unique identifier for each app.
+- track_name - Name as it appear's on the App Store
+- size_bytes - Total downlaad size in bytes
+- currency - The primary currency type of each app
+- price - Total price in USD
+- rating_count_tot - Rating count for all versions
+- rating_count_ver - Rating count for its current version
+- user_rating - Average rating value for all versions
+- user_rating_ver - Average rating value for its current version
+- ver - Each app's latest version identifier
+- cont_rating - Content rating. Ex. 9+, 12+, 17+
+- prime_genre - Primary genre in the App Store
+- sup_devices.num - Each app's number of supported devices
+- ipadSc_urls.num - Number of screenshots allowed to display
+- lang.num - Number of supported languages
+- vpp_lic - VPP device-based licensing is or is not enabled
 
 ## 4. Loading and Formatting Data
 
+I first imported the App Store Dataset and found some useful variables to be missing. I created "size_mb" to measure the each app's size in megabytes rather than bytes. I created "is_free" as a Boolean expression to see if each app is free or not. I created "user_rating_string" since there were only 10 possible values for each app's user rating.
 
-```{r cars}
-summary(cars)
+```{r}
+appstore_df <- read.csv("../Data/AppleStore.csv")
+appstore_df <- mutate(appstore_df, size_mb = size_bytes/1000000)
+appstore_df <- mutate(appstore_df, is_free = price == 0)
+appstore_df <- mutate(appstore_df, user_rating_string = as.character(user_rating))
+appstore_df %>% arrange(X)
 ```
 
-## Including Plots
+## 5. Data Visualization and EDA
 
-You can also embed plots, for example:
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r, echo=FALSE, warning=FALSE}
+appstore_df %>% ggplot() + geom_boxplot(mapping = aes(x=prime_genre, y = rating_count_tot, color=prime_genre)) + scale_y_log10() + coord_flip() + labs(y="Rating Count (logarithmic)") + labs(x="App Primary Genre") + theme_minimal()
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+Since a total downlaod count is not available in this dataset due to restrictions from Apple, we will treat the total rating count of an app to be a rough estimate of its total downloads. A higher rating count implies that the app is more successful.
+We can see how the popularity of every app genre with the graph above. The app genre plays a minor impact in the success of an app (exception is the Book genre).
+
+```{r, echo=FALSE}
+appstore_df %>% ggplot() + geom_bar(mapping=aes(x=is_free, fill=is_free)) + labs(x="App is Free") + theme_minimal()
+```
+
+We can see that there are more free apps in the Apple App Store than paid apps, which can range from \$0.99 to \$299.99.
+
+```{r, echo=FALSE}
+appstore_df %>% ggplot() + geom_col(mapping=aes(x=is_free, y=rating_count_tot, fill=is_free)) + labs(x="App is Free") + theme_minimal()
+```
+
+The total rating count, which implies the total download count, of free apps are much higher than paid apps. This ratio is significantly higher than the number of free apps to paid apps, which implies that free apps are typically more successful in the App Store.
+
+```{r, echo=FALSE} 
+appstore_df %>% ggplot() + geom_histogram(mapping = aes(x=size_mb), bins = 60) + geom_vline(mapping= aes(xintercept= median(appstore_df$size_mb)), color="#873096") + geom_vline(mapping= aes(xintercept= mean(appstore_df$size_mb), color="#ff6159")) + theme_minimal()
+```
+
+We can see the distribution of the app sizes throughout the ~7000 apps in the data set. The red line represents the mean of the app sizes in megabytes, while the purple line represents the median of the app sizes in megabytes. We can see that most apps are under the 500 MB threshold.
+
+
+```{r, echo=FALSE}
+appstore_df %>% ggplot() + geom_point(mapping = aes(y=size_mb, x=log10(rating_count_tot), color=prime_genre == "Games", alpha=0.8)) + theme_minimal()
+```
+
+This scatterplot outlines many aspects about the data that we're investigating. The most striking aspect is that most of the apps in the dataset fall into the Games category, as  you can see with the blue coloring. Also, most of the apps with greater than 1 GB download size are in fact games. Every other app category mostly falls under the 1 GB download size. In addition, the super-popular apps to the far right of the graph typically do not exceed the 2 GB threshold.
+
+
+```{r, echo=FALSE}
+appstore_df %>% ggplot() + geom_boxplot(mapping = aes(x=cont_rating, y = rating_count_tot, color=cont_rating)) + scale_y_log10() + coord_flip() + labs(y="Rating Count (logarithmic)") + labs(x="Content Rating") + theme_minimal()
+```
+
+We could see that content rating plays a very minor roll in determining the success of an app. 
+
+```{r, echo=FALSE}
+appstore_df %>% ggplot() + geom_boxplot(mapping = aes(x=user_rating_string, y = rating_count_tot, color=user_rating_string)) + scale_y_log10() + coord_flip() + labs(y="Rating Count (logarithmic)") + labs(x="User Review Rating") + theme_minimal()
+```
+
+From the boxplot above, we can see a clear growth in total ratings (which gives a rough indication of total downloads) until the user ratings goes above 1.5 stars. However, from 2 - 5 stars, the difference in rating count cannot be determined from the graph.
+
+# 6. Modeling
+
+Two models were created for this dataset. We will first analyze the Ridge Regression model.
+
+```{r, echo=F}
+model_gbm <- readRDS("../Models/final_model.rds")
+model_ridge <- readRDS("../Models/ridge_model.rds")
+```
+
+```{r, echo=F}
+ggplot(varImp(model_ridge))
+```
+
+According to the Ridge Regression variable importance plot, the most important factors in determining an app's success (total rating count) is if the app was free or not. Second is the app's total size in megabytes. The actual price of the app has a slight affect of the overall rating count if the app is paid. The prime genre also has slight importance. However, the content rating of the app is not important at all in determining the overall rating count. 
+
+
+```{r, echo=F}
+ggplot(varImp(model_gbm))
+```
+
+The GBM variable importance plot does not contain if the app is free or not, but does contain the rest of the predictors. The most important variable in this is the app's total download size. The prime genre of the app has slight importance as as well. Where this differs from the Ridge Regression model is the importance of content rating and price with both variables having swapped postiion from the Ridge Regression model.
+
+# 7. Conclusion
+
+
+# References
