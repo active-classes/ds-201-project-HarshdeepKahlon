@@ -1,0 +1,60 @@
+---
+title: "Data Science Project with App Store Dataset"
+author: "Harshdeep Kahlon"
+date: "12/4/2019"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 1. Abstract
+
+The dataset found <a href="https://www.kaggle.com/ramamet4/app-store-apple-data-set-10k-apps/downloads/app-store-apple-data-set-10k-apps.zip/7">here</a> contains more than 7,000 details about apps that are currently listed on the Apple iOS App Store. By investigating this data, we can potentially find interesting observations that could assist companies and developers to further grow their mobile applications.
+
+
+## 2. Problem Descriptions and Objectives
+
+The  goal  of  this  project  is  to  analyze  the  App Store data  and  discover if genre, price, and/or content rating are vital in determining the success of an app. Once the attributes have been found, this project will try to classify whether or not a successful app needs a high user rating. This project will also explore the relationship between an app's size in megabytes and the genre of it. Finally, this project will compare free apps to paid apps ($0.99 and above) and find any major differences.
+
+
+## 3. Data Description
+
+- X - quantitative
+- id - quantitative
+- track_name - categorical
+- size_bytes - quantitative
+- currency - categorical
+- price - quantitative
+- rating_count_tot - quantitative
+- rating_count_ver - quantitative
+- user_rating - quantitative
+- user_rating_ver - quantitative
+- ver - categorical
+- cont_rating - categorical
+- prime_genre - categorical
+- sup_devices.num - quantitative
+- ipadSc_urls.num - quantitative
+- lang.num - quantitative
+- vpp_lic - quantitative
+
+## 4. Loading and Formatting Data
+
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
