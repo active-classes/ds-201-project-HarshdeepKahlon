@@ -65,6 +65,11 @@ summary(predictions_ridge)
 summary(predictions_gdm)
 ```
 
+```{r}
+ggplot(model_ridge)
+ggplot(model_gbm)
+```
+
 ## Results
 
 ```{r}
