@@ -1,5 +1,5 @@
-# DS_201_Project
+# Data Science Project with App Store Dataset
 
-<h2>Harshdeep Kahlon</h2>
+## By Harshdeep Kahlon
 
-Repository for DS 201 Semester Project 
+
