@@ -22,14 +22,14 @@ library(gbm)
 library(elasticnet)
 ```
 
-## 1. Abstract (Draft)
+## 1. Abstract
 
-The dataset found <a href="https://www.kaggle.com/ramamet4/app-store-apple-data-set-10k-apps/downloads/app-store-apple-data-set-10k-apps.zip/7">here</a> contains more than 7,000 details about apps that are currently listed on the Apple iOS App Store. By investigating this data, we can potentially find interesting observations that could assist companies and developers to further grow their mobile applications.
+  The dataset found <a href="https://www.kaggle.com/ramamet4/app-store-apple-data-set-10k-apps/downloads/app-store-apple-data-set-10k-apps.zip/7">here</a> contains more than 7,000 applications with details that are currently listed on the Apple iOS App Store. By investigating this data, we can potentially find interesting observations that could assist companies and developers to further grow their mobile applications. This project is mainly designed to find the areas of an app that should be optimized to promote the overall success of an app.
 
 
-## 2. Problem Descriptions and Objectives (Draft)
-
-The  goal  of  this  project  is  to  analyze  the  App Store data  and  discover if genre, price, and/or content rating are vital in determining the success of an app. Once the attributes have been found, this project will try to classify whether or not a successful app needs a high user rating. This project will also explore the relationship between an app's size in megabytes and the genre of it. Finally, this project will compare free apps to paid apps ($0.99 and above) and find any major differences.
+## 2. Problem Descriptions and Objectives
+  Data Analytics  is used everywhere to analyze website and application performance and trends. The Apple App Store, which is one of the largest digital storefronts in the world, does not provide a public API that can be used to find any app's information (total downloads, size, genre, etc.). However, the App Store's app database is able to be scraped to find such information. 
+  The  goal  of  this  project  is  to  analyze  the  App Store data  and  discover if genre, price, and/or content rating are vital in determining the success of an app. Once the attributes have been found, this project will try to classify whether or not a successful app needs a high user rating. This project will also explore the relationship between an app's size in megabytes and the genre of it. Finally, this project will compare free apps to paid apps ($0.99 and above) and find any major differences. The results of these analyses should help developers and teams find the 
 
 
 ## 3. Data Description
@@ -70,7 +70,7 @@ appstore_df <- appstore_df %>% arrange(X)
 Figure 1: Rating Count for Each Genre
 \end{center}
 
-```{r, echo=FALSE, warning=FALSE,width=10,fig.height=11}
+```{r, echo=FALSE, warning=FALSE}
 appstore_df %>% ggplot() + geom_boxplot(mapping = aes(x=prime_genre, y = rating_count_tot, color=prime_genre)) + scale_y_log10() + coord_flip() + labs(y="Rating Count (logarithmic)") + labs(x="App Primary Genre") + theme_minimal()
 ```
 
@@ -168,7 +168,7 @@ The GBM variable importance plot does not contain if the app is free or not, but
 
 # 7. Conclusion
 
-After exploring and analyzing the Apple App Store dataset that contains over 7,000 apps, we have discovered what variables affect an app's success (determined by its total rating count) the most. The most impactful variables are if the app is free or not and the total download size of the app. 
+After exploring and analyzing the Apple App Store dataset that contains over 7,000 apps, we have discovered what variables affect an app's success (determined by its total rating count) the most. The most impactful variables are if the app is free or not and the total download size of the app. The 
 
 # References
 
