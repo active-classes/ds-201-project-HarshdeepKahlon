@@ -66,12 +66,20 @@ appstore_df <- appstore_df %>% arrange(X)
 
 ## 5. Data Visualization and EDA
 
-```{r, echo=FALSE, warning=FALSE}
+\begin{center}
+Figure 1: Rating Count for Each Genre
+\end{center}
+
+```{r, echo=FALSE, warning=FALSE,width=10,fig.height=11}
 appstore_df %>% ggplot() + geom_boxplot(mapping = aes(x=prime_genre, y = rating_count_tot, color=prime_genre)) + scale_y_log10() + coord_flip() + labs(y="Rating Count (logarithmic)") + labs(x="App Primary Genre") + theme_minimal()
 ```
 
-Since a total downlaod count is not available in this dataset due to restrictions from Apple, we will treat the total rating count of an app to be a rough estimate of its total downloads. A higher rating count implies that the app is more successful.
+Since a total download count is not available in this dataset due to restrictions from Apple, we will treat the total rating count of an app to be a rough estimate of its total downloads. A higher rating count implies that the app is more successful.
 We can see how the popularity of every app genre with the graph above. The app genre plays a minor impact in the success of an app (exception is the Book genre).
+
+\begin{center}
+Figure 2: Number of Free Apps Compared to Paid Apps
+\end{center}
 
 ```{r, echo=FALSE, warning=FALSE}
 appstore_df %>% ggplot() + geom_bar(mapping=aes(x=is_free, fill=is_free)) + labs(x="App is Free") + theme_minimal()
@@ -79,11 +87,19 @@ appstore_df %>% ggplot() + geom_bar(mapping=aes(x=is_free, fill=is_free)) + labs
 
 We can see that there are more free apps in the Apple App Store than paid apps, which can range from \$0.99 to \$299.99.
 
+\begin{center}
+Figure 3: Number of Free Apps Compared to Paid Apps
+\end{center}
+
 ```{r, echo=FALSE, warning=FALSE}
 appstore_df %>% ggplot() + geom_col(mapping=aes(x=is_free, y=rating_count_tot, fill=is_free)) + labs(x="App is Free") + theme_minimal()
 ```
 
 The total rating count, which implies the total download count, of free apps are much higher than paid apps. This ratio is significantly higher than the number of free apps to paid apps, which implies that free apps are typically more successful in the App Store.
+
+\begin{center}
+Figure 4: Download Size (MB) and Total Rating Count
+\end{center}
 
 ```{r, echo=FALSE, warning=FALSE}
 appstore_df %>% ggplot() + geom_histogram(mapping = aes(x=size_mb), bins = 60) + geom_vline(mapping= aes(xintercept= median(appstore_df$size_mb)), color="#873096") + geom_vline(mapping= aes(xintercept= mean(appstore_df$size_mb), color="#ff6159")) + theme_minimal()
@@ -98,6 +114,9 @@ appstore_df %>% ggplot() + geom_point(mapping = aes(y=size_mb, x=log10(rating_co
 
 This scatterplot outlines many aspects about the data that we're investigating. The most striking aspect is that most of the apps in the dataset fall into the Games category, as  you can see with the blue coloring. Also, most of the apps with greater than 1 GB download size are in fact games. Every other app category mostly falls under the 1 GB download size. In addition, the super-popular apps to the far right of the graph typically do not exceed the 2 GB threshold.
 
+\begin{center}
+Figure 5: Relation Between Content Rating and Total Rating Count
+\end{center}
 
 ```{r, echo=FALSE, warning=FALSE}
 appstore_df %>% ggplot() + geom_boxplot(mapping = aes(x=cont_rating, y = rating_count_tot, color=cont_rating)) + scale_y_log10() + coord_flip() + labs(y="Rating Count (logarithmic)") + labs(x="Content Rating") + theme_minimal()
@@ -105,6 +124,9 @@ appstore_df %>% ggplot() + geom_boxplot(mapping = aes(x=cont_rating, y = rating_
 
 We could see that content rating plays a very minor roll in determining the success of an app. 
 
+\begin{center}
+Figure 6: Relation Between User Review Ratings and Total Rating Count
+\end{center}
 ```{r, echo=FALSE, warning=FALSE}
 appstore_df %>% ggplot() + geom_boxplot(mapping = aes(x=user_rating_string, y = rating_count_tot, color=user_rating_string)) + scale_y_log10() + coord_flip() + labs(y="Rating Count (logarithmic)") + labs(x="User Review Rating") + theme_minimal()
 ```
@@ -150,3 +172,4 @@ After exploring and analyzing the Apple App Store dataset that contains over 7,0
 
 # References
 
+[1] Ramanathan. Mobile app statistics (Apple iOS app store), 2017. https://www.kaggle.com/ramamet4/app-store-apple-data-set-10k-apps/kernels,Last accessed on 2019-12-04
