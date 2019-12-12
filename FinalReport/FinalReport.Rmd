@@ -168,7 +168,7 @@ The GBM variable importance plot does not contain if the app is free or not, but
 
 # 7. Conclusion
 
-After exploring and analyzing the Apple App Store dataset that contains over 7,000 apps, we have discovered what variables affect an app's success (determined by its total rating count) the most. The most impactful variables are if the app is free or not and the total download size of the app. The 
+  After exploring and analyzing the Apple App Store dataset that contains over 7,000 apps, we have discovered what variables affect an app's success (determined by its total rating count) the most. The most impactful variables are if the app is free or not and the total download size of the app. We have also found that the content rating (age rating) and primary genre of an app do not affect the app's success in a significant way. With these findings in mind, developers can use this information to publish apps that have a higher potential to succeed. Although the dataset was based off of 2017 data, it should still provide some relevance to today's App Store markets. 
 
 # References
 
